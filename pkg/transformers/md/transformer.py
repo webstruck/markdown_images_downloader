@@ -41,7 +41,7 @@ class ArticleTransformer:
         self._replacement_mapping = {}
 
     def _read_article(self) -> List[str]:
-        with open(self._article_file_path, 'r') as m_file:
+        with open(self._article_file_path, 'rb') as m_file:
             self._md_conv.convert(m_file.read())
 
         print(f'Images links count = {len(self._md_conv.images)}')
@@ -54,13 +54,13 @@ class ArticleTransformer:
         print('Replacing images urls in the document...')
         replacement_mapping = self._replacement_mapping
         lines = []
-        with open(self._article_file_path, 'r') as infile:
+        with open(self._article_file_path, 'r', encoding="utf8") as infile:
             for line in infile:
                 for src, target in replacement_mapping.items():
                     line = line.replace(src, target)
                 lines.append(line)
 
-        with open(self._article_file_path, 'w') as outfile:
+        with open(self._article_file_path, 'w', encoding="utf8") as outfile:
             for line in lines:
                 outfile.write(line)
 

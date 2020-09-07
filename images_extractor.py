@@ -120,7 +120,10 @@ class ImageDownloader:
             img_filename = get_filename_from_url(img_response)
             img_path = path_join(imgs_dir, img_filename)
             print(f'Image will be written to the file "{img_path}"...')
-            replacement_mapping.setdefault(img_url, path_join(img_publicpath or img_dirname, img_filename))
+            # [Nilesh, 07/09/2020] Modified to use / instead of op.path on windows \ as a path seperator
+            # so that the images appear properly on GitHub viewer. This also works on Zettlr.
+            p = (img_publicpath or img_dirname, img_filename)
+            replacement_mapping.setdefault(img_url, "/".join(p))
 
             with open(img_path, 'wb') as img_file:
                 img_file.write(img_response.content)

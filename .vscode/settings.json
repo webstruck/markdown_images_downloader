@@ -1,0 +1,6 @@
+{
+    "cmake.configureOnOpen": false,
+    "python.pythonPath": "C:\\apps\\Continuum\\miniconda3\\envs\\ai4raghuvan\\python.exe",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
+}
